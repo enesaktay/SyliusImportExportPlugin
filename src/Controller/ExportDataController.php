@@ -6,6 +6,7 @@ namespace FriendsOfSylius\SyliusImportExportPlugin\Controller;
 
 use FriendsOfSylius\SyliusImportExportPlugin\Exporter\ExporterRegistry;
 use FriendsOfSylius\SyliusImportExportPlugin\Exporter\ResourceExporterInterface;
+use FriendsOfSylius\SyliusImportExportPlugin\Service\FilenameGenerator;
 use Pagerfanta\Pagerfanta;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfigurationFactoryInterface;
@@ -60,7 +61,10 @@ final class ExportDataController extends Controller
      */
     public function exportAction(Request $request, string $resource, string $format): Response
     {
-        $outputFilename = sprintf('%s-%s.%s', $resource, date('Y-m-d'), $format); // @todo Create a service for this
+        $filenameGenerator = new FilenameGenerator();
+
+//        $outputFilename = sprintf('%s-%s.%s', $resource, date('Y-m-d'), $format); // @todo Create a service for this
+        $outputFilename = $filenameGenerator->generateFilename($resource, $format);
 
         return $this->exportData($request, $resource, $format, $outputFilename);
     }
