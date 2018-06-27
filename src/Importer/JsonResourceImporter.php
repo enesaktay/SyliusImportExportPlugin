@@ -32,7 +32,7 @@ final class JsonResourceImporter extends ResourceImporter
     {
         $this->result->start();
 
-        $dataAsArray = json_decode(file_get_contents($fileName), true);
+        $dataAsArray = json_decode((string) file_get_contents($fileName), true);
 
         foreach ($dataAsArray as $i => $row) {
             if ($this->importData($i, $row)) {

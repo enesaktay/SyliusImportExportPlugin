@@ -54,7 +54,7 @@ final class JsonResourceExporter extends ResourceExporter
      */
     public function getExportedData(): string
     {
-        return json_encode($this->data);
+        return (string) json_encode($this->data);
     }
 
     /**

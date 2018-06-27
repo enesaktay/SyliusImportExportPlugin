@@ -67,7 +67,7 @@ class ResourceImporter implements ImporterInterface
 
         $this->batchCount = 0;
         foreach ($reader as $i => $row) {
-            if ($this->importData($i, $row)) {
+            if ($this->importData((int) $i, $row)) {
                 break;
             }
         }

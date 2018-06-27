@@ -68,7 +68,7 @@ class ExcelWriter implements WriterInterface
     {
         $this->finish();
 
-        $contents = file_get_contents($this->filename);
+        $contents = (string) file_get_contents($this->filename);
 
         unlink($this->filename);
 
@@ -78,7 +78,7 @@ class ExcelWriter implements WriterInterface
     private function prepare(): void
     {
         if (null === $this->filename) {
-            $this->filename = tempnam($this->temporaryFolder, 'exp');
+            $this->filename = (string) tempnam($this->temporaryFolder, 'exp');
         }
 
         if (null === $this->writer) {
